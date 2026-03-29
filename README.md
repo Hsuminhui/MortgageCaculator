@@ -20,6 +20,7 @@
 7.按下"清除"按鈕後，輸入視窗及輸出視窗會清除所有的值。
 
 錯誤視窗如下:
+
 <img width="145" height="118" alt="image" src="https://github.com/user-attachments/assets/8102fa77-0e6a-4719-9dcd-fe863ee471f2" />
 <img width="147" height="114" alt="image" src="https://github.com/user-attachments/assets/aca9ac7b-5c06-4eb0-b255-911bbc566408" />
 <img width="149" height="116" alt="image" src="https://github.com/user-attachments/assets/d6d3f459-a498-4d79-b898-2f4118fd8ec1" />
@@ -34,4 +35,5 @@
 2.提供專業名詞解釋及相關的計算公式，為可滑動視窗。
 
 系統介面如下:
+
 <img width="694" height="521" alt="image" src="https://github.com/user-attachments/assets/7fbd021b-6bf0-4caf-baf8-e283b18a9d5e" />
