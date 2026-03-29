@@ -28,33 +28,37 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(房貸試算器));
             this.label1 = new System.Windows.Forms.Label();
             this.input = new System.Windows.Forms.GroupBox();
+            this.input4 = new System.Windows.Forms.TextBox();
+            this.input3 = new System.Windows.Forms.TextBox();
+            this.input2 = new System.Windows.Forms.TextBox();
+            this.input1 = new System.Windows.Forms.TextBox();
+            this.downpayment = new System.Windows.Forms.ComboBox();
+            this.btncaculate = new System.Windows.Forms.Button();
             this.comboBox1 = new System.Windows.Forms.ComboBox();
             this.gracelbl = new System.Windows.Forms.Label();
             this.year = new System.Windows.Forms.Label();
             this.borrow = new System.Windows.Forms.Label();
             this.ogmoney = new System.Windows.Forms.Label();
             this.price = new System.Windows.Forms.Label();
-            this.btncaculate = new System.Windows.Forms.Button();
-            this.downpayment = new System.Windows.Forms.ComboBox();
             this.output = new System.Windows.Forms.GroupBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.label7 = new System.Windows.Forms.Label();
-            this.output1 = new System.Windows.Forms.Label();
-            this.output2 = new System.Windows.Forms.Label();
-            this.output3 = new System.Windows.Forms.Label();
-            this.output4 = new System.Windows.Forms.Label();
-            this.output5 = new System.Windows.Forms.Label();
             this.output6 = new System.Windows.Forms.Label();
-            this.input1 = new System.Windows.Forms.TextBox();
-            this.input2 = new System.Windows.Forms.TextBox();
-            this.input3 = new System.Windows.Forms.TextBox();
-            this.input4 = new System.Windows.Forms.TextBox();
+            this.output5 = new System.Windows.Forms.Label();
+            this.output4 = new System.Windows.Forms.Label();
+            this.output3 = new System.Windows.Forms.Label();
+            this.output2 = new System.Windows.Forms.Label();
+            this.output1 = new System.Windows.Forms.Label();
+            this.label7 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label4 = new System.Windows.Forms.Label();
+            this.label3 = new System.Windows.Forms.Label();
+            this.label2 = new System.Windows.Forms.Label();
+            this.richTextBox1 = new System.Windows.Forms.RichTextBox();
+            this.richTextBox2 = new System.Windows.Forms.RichTextBox();
+            this.button1 = new System.Windows.Forms.Button();
             this.input.SuspendLayout();
             this.output.SuspendLayout();
             this.SuspendLayout();
@@ -72,6 +76,7 @@
             // input
             // 
             this.input.BackColor = System.Drawing.SystemColors.ControlLight;
+            this.input.Controls.Add(this.button1);
             this.input.Controls.Add(this.input4);
             this.input.Controls.Add(this.input3);
             this.input.Controls.Add(this.input2);
@@ -91,6 +96,60 @@
             this.input.TabIndex = 1;
             this.input.TabStop = false;
             this.input.Text = "輸入資訊";
+            // 
+            // input4
+            // 
+            this.input4.Location = new System.Drawing.Point(256, 285);
+            this.input4.Name = "input4";
+            this.input4.Size = new System.Drawing.Size(143, 39);
+            this.input4.TabIndex = 4;
+            // 
+            // input3
+            // 
+            this.input3.Location = new System.Drawing.Point(256, 213);
+            this.input3.Name = "input3";
+            this.input3.Size = new System.Drawing.Size(143, 39);
+            this.input3.TabIndex = 3;
+            // 
+            // input2
+            // 
+            this.input2.Location = new System.Drawing.Point(256, 143);
+            this.input2.Name = "input2";
+            this.input2.Size = new System.Drawing.Size(143, 39);
+            this.input2.TabIndex = 2;
+            // 
+            // input1
+            // 
+            this.input1.Location = new System.Drawing.Point(256, 65);
+            this.input1.Name = "input1";
+            this.input1.Size = new System.Drawing.Size(143, 39);
+            this.input1.TabIndex = 0;
+            // 
+            // downpayment
+            // 
+            this.downpayment.Font = new System.Drawing.Font("微軟正黑體", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.downpayment.FormattingEnabled = true;
+            this.downpayment.Items.AddRange(new object[] {
+            "自備款比例 (%)",
+            "自備款金額 (NTD)"});
+            this.downpayment.Location = new System.Drawing.Point(40, 145);
+            this.downpayment.Name = "downpayment";
+            this.downpayment.Size = new System.Drawing.Size(194, 36);
+            this.downpayment.TabIndex = 1;
+            // 
+            // btncaculate
+            // 
+            this.btncaculate.BackColor = System.Drawing.Color.ForestGreen;
+            this.btncaculate.CausesValidation = false;
+            this.btncaculate.DialogResult = System.Windows.Forms.DialogResult.Retry;
+            this.btncaculate.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.btncaculate.Location = new System.Drawing.Point(234, 445);
+            this.btncaculate.Name = "btncaculate";
+            this.btncaculate.Size = new System.Drawing.Size(137, 47);
+            this.btncaculate.TabIndex = 10;
+            this.btncaculate.Text = "開始計算";
+            this.btncaculate.UseVisualStyleBackColor = false;
+            this.btncaculate.Click += new System.EventHandler(this.btncaculate_Click);
             // 
             // comboBox1
             // 
@@ -151,32 +210,6 @@
             this.price.TabIndex = 0;
             this.price.Text = "房屋總價 (NTD)";
             // 
-            // btncaculate
-            // 
-            this.btncaculate.BackColor = System.Drawing.Color.ForestGreen;
-            this.btncaculate.CausesValidation = false;
-            this.btncaculate.DialogResult = System.Windows.Forms.DialogResult.Retry;
-            this.btncaculate.ForeColor = System.Drawing.SystemColors.ControlLightLight;
-            this.btncaculate.Location = new System.Drawing.Point(136, 443);
-            this.btncaculate.Name = "btncaculate";
-            this.btncaculate.Size = new System.Drawing.Size(148, 47);
-            this.btncaculate.TabIndex = 10;
-            this.btncaculate.Text = "開始計算";
-            this.btncaculate.UseVisualStyleBackColor = false;
-            this.btncaculate.Click += new System.EventHandler(this.btncaculate_Click);
-            // 
-            // downpayment
-            // 
-            this.downpayment.Font = new System.Drawing.Font("微軟正黑體", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
-            this.downpayment.FormattingEnabled = true;
-            this.downpayment.Items.AddRange(new object[] {
-            "自備款比例 (%)",
-            "自備款金額 (NTD)"});
-            this.downpayment.Location = new System.Drawing.Point(40, 145);
-            this.downpayment.Name = "downpayment";
-            this.downpayment.Size = new System.Drawing.Size(194, 36);
-            this.downpayment.TabIndex = 11;
-            // 
             // output
             // 
             this.output.BackColor = System.Drawing.SystemColors.ControlLight;
@@ -200,50 +233,53 @@
             this.output.TabStop = false;
             this.output.Text = "輸出結果";
             // 
-            // label2
+            // output6
             // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(46, 73);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(209, 31);
-            this.label2.TabIndex = 12;
-            this.label2.Text = "貸款總金額 (NTD)";
+            this.output6.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.output6.Location = new System.Drawing.Point(371, 426);
+            this.output6.Name = "output6";
+            this.output6.Size = new System.Drawing.Size(165, 31);
+            this.output6.TabIndex = 23;
             // 
-            // label3
+            // output5
             // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(46, 145);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(294, 31);
-            this.label3.TabIndex = 13;
-            this.label3.Text = "每月應繳金額 (本金+利息)";
+            this.output5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.output5.Location = new System.Drawing.Point(371, 362);
+            this.output5.Name = "output5";
+            this.output5.Size = new System.Drawing.Size(165, 31);
+            this.output5.TabIndex = 22;
             // 
-            // label4
+            // output4
             // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(46, 221);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(110, 31);
-            this.label4.TabIndex = 14;
-            this.label4.Text = "首期利息";
+            this.output4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.output4.Location = new System.Drawing.Point(371, 293);
+            this.output4.Name = "output4";
+            this.output4.Size = new System.Drawing.Size(165, 31);
+            this.output4.TabIndex = 21;
             // 
-            // label5
+            // output3
             // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(46, 293);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(110, 31);
-            this.label5.TabIndex = 15;
-            this.label5.Text = "首期本金";
+            this.output3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.output3.Location = new System.Drawing.Point(371, 221);
+            this.output3.Name = "output3";
+            this.output3.Size = new System.Drawing.Size(165, 31);
+            this.output3.TabIndex = 20;
             // 
-            // label6
+            // output2
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(46, 362);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(134, 31);
-            this.label6.TabIndex = 16;
-            this.label6.Text = "總利息支出";
+            this.output2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.output2.Location = new System.Drawing.Point(371, 145);
+            this.output2.Name = "output2";
+            this.output2.Size = new System.Drawing.Size(165, 31);
+            this.output2.TabIndex = 19;
+            // 
+            // output1
+            // 
+            this.output1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
+            this.output1.Location = new System.Drawing.Point(371, 73);
+            this.output1.Name = "output1";
+            this.output1.Size = new System.Drawing.Size(165, 31);
+            this.output1.TabIndex = 18;
             // 
             // label7
             // 
@@ -254,87 +290,95 @@
             this.label7.TabIndex = 17;
             this.label7.Text = "總還款金額";
             // 
-            // output1
+            // label6
             // 
-            this.output1.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.output1.Location = new System.Drawing.Point(371, 73);
-            this.output1.Name = "output1";
-            this.output1.Size = new System.Drawing.Size(165, 31);
-            this.output1.TabIndex = 18;
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(46, 362);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(134, 31);
+            this.label6.TabIndex = 16;
+            this.label6.Text = "總利息支出";
             // 
-            // output2
+            // label5
             // 
-            this.output2.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.output2.Location = new System.Drawing.Point(371, 145);
-            this.output2.Name = "output2";
-            this.output2.Size = new System.Drawing.Size(165, 31);
-            this.output2.TabIndex = 19;
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(46, 293);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(110, 31);
+            this.label5.TabIndex = 15;
+            this.label5.Text = "首期本金";
             // 
-            // output3
+            // label4
             // 
-            this.output3.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.output3.Location = new System.Drawing.Point(371, 221);
-            this.output3.Name = "output3";
-            this.output3.Size = new System.Drawing.Size(165, 31);
-            this.output3.TabIndex = 20;
+            this.label4.AutoSize = true;
+            this.label4.Location = new System.Drawing.Point(46, 221);
+            this.label4.Name = "label4";
+            this.label4.Size = new System.Drawing.Size(110, 31);
+            this.label4.TabIndex = 14;
+            this.label4.Text = "首期利息";
             // 
-            // output4
+            // label3
             // 
-            this.output4.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.output4.Location = new System.Drawing.Point(371, 293);
-            this.output4.Name = "output4";
-            this.output4.Size = new System.Drawing.Size(165, 31);
-            this.output4.TabIndex = 21;
+            this.label3.AutoSize = true;
+            this.label3.Location = new System.Drawing.Point(46, 145);
+            this.label3.Name = "label3";
+            this.label3.Size = new System.Drawing.Size(294, 31);
+            this.label3.TabIndex = 13;
+            this.label3.Text = "每月應繳金額 (本金+利息)";
             // 
-            // output5
+            // label2
             // 
-            this.output5.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.output5.Location = new System.Drawing.Point(371, 362);
-            this.output5.Name = "output5";
-            this.output5.Size = new System.Drawing.Size(165, 31);
-            this.output5.TabIndex = 22;
+            this.label2.AutoSize = true;
+            this.label2.Location = new System.Drawing.Point(46, 73);
+            this.label2.Name = "label2";
+            this.label2.Size = new System.Drawing.Size(209, 31);
+            this.label2.TabIndex = 12;
+            this.label2.Text = "貸款總金額 (NTD)";
             // 
-            // output6
+            // richTextBox1
             // 
-            this.output6.BorderStyle = System.Windows.Forms.BorderStyle.Fixed3D;
-            this.output6.Location = new System.Drawing.Point(371, 426);
-            this.output6.Name = "output6";
-            this.output6.Size = new System.Drawing.Size(165, 31);
-            this.output6.TabIndex = 23;
+            this.richTextBox1.Font = new System.Drawing.Font("微軟正黑體", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.richTextBox1.Location = new System.Drawing.Point(128, 709);
+            this.richTextBox1.Name = "richTextBox1";
+            this.richTextBox1.ReadOnly = true;
+            this.richTextBox1.Size = new System.Drawing.Size(431, 210);
+            this.richTextBox1.TabIndex = 3;
+            this.richTextBox1.Text = "【名詞介紹】\n1. 房屋總價：購買房屋的總金額\n2. 自備款：自己先支付的金額\n3. 貸款金額：房屋總價 - 自備款\n4. 年利率：銀行一年收取的利率\n5. 月利" +
+    "率：年利率 ÷ 12\n6. 寬限期：只繳利息不還本金的期間";
             // 
-            // input1
+            // richTextBox2
             // 
-            this.input1.Location = new System.Drawing.Point(256, 65);
-            this.input1.Name = "input1";
-            this.input1.Size = new System.Drawing.Size(143, 39);
-            this.input1.TabIndex = 12;
+            this.richTextBox2.Font = new System.Drawing.Font("微軟正黑體", 11F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(136)));
+            this.richTextBox2.Location = new System.Drawing.Point(691, 709);
+            this.richTextBox2.Name = "richTextBox2";
+            this.richTextBox2.ReadOnly = true;
+            this.richTextBox2.Size = new System.Drawing.Size(575, 210);
+            this.richTextBox2.TabIndex = 4;
+            this.richTextBox2.TabStop = false;
+            this.richTextBox2.Text = resources.GetString("richTextBox2.Text");
             // 
-            // input2
+            // button1
             // 
-            this.input2.Location = new System.Drawing.Point(256, 143);
-            this.input2.Name = "input2";
-            this.input2.Size = new System.Drawing.Size(143, 39);
-            this.input2.TabIndex = 13;
-            // 
-            // input3
-            // 
-            this.input3.Location = new System.Drawing.Point(256, 213);
-            this.input3.Name = "input3";
-            this.input3.Size = new System.Drawing.Size(143, 39);
-            this.input3.TabIndex = 14;
-            // 
-            // input4
-            // 
-            this.input4.Location = new System.Drawing.Point(256, 285);
-            this.input4.Name = "input4";
-            this.input4.Size = new System.Drawing.Size(143, 39);
-            this.input4.TabIndex = 13;
+            this.button1.BackColor = System.Drawing.Color.SteelBlue;
+            this.button1.CausesValidation = false;
+            this.button1.DialogResult = System.Windows.Forms.DialogResult.Retry;
+            this.button1.ForeColor = System.Drawing.SystemColors.ControlLightLight;
+            this.button1.Location = new System.Drawing.Point(58, 445);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(148, 47);
+            this.button1.TabIndex = 11;
+            this.button1.Text = "清除";
+            this.button1.UseVisualStyleBackColor = false;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
             // 
             // 房貸試算器
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(9F, 18F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(1351, 833);
+            this.BackColor = System.Drawing.Color.LightSteelBlue;
+            this.ClientSize = new System.Drawing.Size(1400, 1012);
+            this.Controls.Add(this.richTextBox2);
+            this.Controls.Add(this.richTextBox1);
             this.Controls.Add(this.output);
             this.Controls.Add(this.input);
             this.Controls.Add(this.label1);
@@ -378,6 +422,9 @@
         private System.Windows.Forms.TextBox input3;
         private System.Windows.Forms.TextBox input2;
         private System.Windows.Forms.TextBox input1;
+        private System.Windows.Forms.RichTextBox richTextBox1;
+        private System.Windows.Forms.RichTextBox richTextBox2;
+        private System.Windows.Forms.Button button1;
     }
 }
 

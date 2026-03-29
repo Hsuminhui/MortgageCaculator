@@ -117,4 +117,20 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
+  <data name="richTextBox2.Text" xml:space="preserve">
+    <value>【計算公式】
+1. 自備款（百分比）= 房屋總價 × 自備款比例
+2. 貸款金額 = 房屋總價 - 自備款
+3. 月利率 = 年利率 ÷ 12
+4. 每月還款金額 = P × r × (1+r)^n ÷ [(1+r)^n - 1]
+   P = 貸款金額
+   r = 月利率
+   n = 總還款期數
+5. 首期利息 = 貸款金額 × 月利率
+6. 首期本金 = 每月還款金額 - 首期利息
+7. 總還款金額 = 每月還款金額 × 總期數
+8. 總利息支出 = 總還款金額 - 貸款金額
+9. 寬限期每月還款 = 貸款金額 × 月利率
+</value>
+  </data>
 </root>

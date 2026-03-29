@@ -19,6 +19,7 @@ namespace 房貸試算器
             InitializeComponent();
             downpayment.SelectedIndex = 0; //預設自備款比例(%)或輸入金額
             comboBox1.SelectedIndex = 0; //預設寬限期為無
+            this.AcceptButton = btncaculate;
 
         }
 
@@ -35,14 +36,50 @@ namespace 房貸試算器
             bool israte = double.TryParse(input3.Text, out rate);
             bool isyear = int.TryParse(input4.Text, out year);
 
-            if (ishouseprice && isownmoney && israte && isyear)
+            if (!ishouseprice || !isownmoney || !israte || !isyear)
             {
-                caculate();
+                MessageBox.Show("請輸入有效的數值。", "輸入錯誤", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
             }
-            else
+
+            if (houseprice <= 0)
             {
-                MessageBox.Show("請輸入有效的數值");
+                MessageBox.Show("房屋總價必須大於 0。", "輸入錯誤", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                input1.Focus();
+                return;
             }
+
+            if (ownmoney < 0)
+            {
+                MessageBox.Show("自備款不可小於 0。", "輸入錯誤", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                input2.Focus();
+                return;
+            }
+
+            if (rate <= 0)
+            {
+                MessageBox.Show("年利率必須大於 0。", "輸入錯誤", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                input3.Focus();
+                return;
+            }
+
+            if (year <= 0)
+            {
+                MessageBox.Show("貸款年限必須大於 0。", "輸入錯誤", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                input4.Focus();
+                return;
+            }
+
+            // 寬限期不可大於或等於貸款年限（0 代表無寬限期，例外）
+            if (grace != 0 && grace >= year)
+            {
+                MessageBox.Show("寬限期必須小於貸款年限。", "輸入錯誤", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                comboBox1.Focus();
+                return;
+            }
+
+            caculate();
+            
         }
         private void caculate()
         {
@@ -60,14 +97,34 @@ namespace 房貸試算器
             {
                 double percentage = double.Parse(input2.Text);
                 ownmoney = houseprice * percentage / 100.0;
+
+                if (percentage < 0 || percentage >= 100)
+                {
+                    MessageBox.Show("自備款比例請輸入 0 ~ 99.99 之間的數值。", "輸入錯誤", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    input2.Focus();
+                    return;
+                }
             }
             else // 輸入的是自備款金額
             {
                 ownmoney = double.Parse(input2.Text);
+                if (ownmoney < 0 || ownmoney >= houseprice)
+                {
+                    MessageBox.Show("自備款金額請輸入大於或等於 0 且小於房價的數值。", "輸入錯誤", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                    input2.Focus();
+                    return;
+                }
             }
 
             // 計算貸款金額
             loanamount = houseprice - ownmoney;
+
+            if (loanamount <= 0)
+            {
+                MessageBox.Show("貸款金額必須大於 0。", "計算錯誤", MessageBoxButtons.OK, MessageBoxIcon.Warning);
+                return;
+            }
+
             output1.Text = $"{loanamount:N2}";
 
             double r = rate / 12.0;      // 月利率
@@ -117,6 +174,20 @@ namespace 房貸試算器
                 output5.Text = $"{totalInterest:N2}";      // 總利息支出
                 output6.Text = $"{totalPayment:N2}";       // 總還款金額
             }
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            input1.Text = "";
+            input2.Text = "";
+            input3.Text = "";
+            input4.Text = "";
+            output1.Text = "";
+            output2.Text = "";
+            output3.Text = "";
+            output4.Text = "";
+            output5.Text = "";
+            output6.Text = "";
         }
     }
 }
