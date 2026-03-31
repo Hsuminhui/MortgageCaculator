@@ -20,18 +20,19 @@ namespace 房貸試算器
             downpayment.SelectedIndex = 0; //預設自備款比例(%)或輸入金額
             comboBox1.SelectedIndex = 0; //預設寬限期為無
             this.AcceptButton = btncaculate;
-
+            input1.TextChanged += input1_TextChanged;
+            input2.TextChanged += input2_TextChanged;
         }
 
         private void btncaculate_Click(object sender, EventArgs e)
         {
-            int index = downpayment.SelectedIndex; //選比例or輸入金額
+            int index = downpayment.SelectedIndex;
 
             int year, grace;
             double houseprice, rate, ownmoney;
 
             grace = comboBox1.SelectedIndex;
-            bool ishouseprice = double.TryParse(input1.Text, out houseprice);
+            bool ishouseprice = double.TryParse(input1.Text.Replace(",",""), out houseprice);
             bool isownmoney = double.TryParse(input2.Text, out ownmoney);
             bool israte = double.TryParse(input3.Text, out rate);
             bool isyear = int.TryParse(input4.Text, out year);
@@ -70,7 +71,7 @@ namespace 房貸試算器
                 return;
             }
 
-            // 寬限期不可大於或等於貸款年限（0 代表無寬限期，例外）
+            // 寬限期不可大於或等於貸款年限
             if (grace != 0 && grace >= year)
             {
                 MessageBox.Show("寬限期必須小於貸款年限。", "輸入錯誤", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -81,6 +82,35 @@ namespace 房貸試算器
             caculate();
             
         }
+
+        private void input1_TextChanged(object sender, EventArgs e)
+        {
+            FormatTextBoxWithThousands(input1, input1_TextChanged);
+        }
+
+        private void input2_TextChanged(object sender, EventArgs e)
+        {
+            if (downpayment.SelectedIndex == 1) // 金額
+            {
+                FormatTextBoxWithThousands(input2, input2_TextChanged);
+            }
+        }
+
+        private void FormatTextBoxWithThousands(TextBox tb, EventHandler handler)
+        {
+            if (string.IsNullOrWhiteSpace(tb.Text)) return;
+
+            string raw = tb.Text.Replace(",", "");
+
+            if (!double.TryParse(raw, out double value)) return;
+
+            tb.TextChanged -= handler;
+            tb.Text = value.ToString("N0");
+            tb.SelectionStart = tb.Text.Length;
+            tb.TextChanged += handler;
+        }
+
+
         private void caculate()
         {
             double houseprice = double.Parse(input1.Text);
@@ -88,7 +118,7 @@ namespace 房貸試算器
             double loanamount = 0;
             double rate = double.Parse(input3.Text) / 100.0; // 年利率轉小數
             int year = int.Parse(input4.Text);
-            int grace = comboBox1.SelectedIndex;             // 0=無寬限期，1=1年，2=2年...
+            int grace = comboBox1.SelectedIndex;             
             double firstInterest, money;                     // 首期利息、首期本金
             double totalInterest, totalPayment;              // 總利息、總還款
 
@@ -107,7 +137,7 @@ namespace 房貸試算器
             }
             else // 輸入的是自備款金額
             {
-                ownmoney = double.Parse(input2.Text);
+                ownmoney = double.Parse(input2.Text.Replace(",",""));
                 if (ownmoney < 0 || ownmoney >= houseprice)
                 {
                     MessageBox.Show("自備款金額請輸入大於或等於 0 且小於房價的數值。", "輸入錯誤", MessageBoxButtons.OK, MessageBoxIcon.Warning);
@@ -141,11 +171,11 @@ namespace 房貸試算器
                 totalPayment = monthlypayment * totalMonths;   // 總還款金額
                 totalInterest = totalPayment - loanamount;     // 總利息支出
 
-                output2.Text = $"{monthlypayment:N2}";    // 每月還款金額
-                output3.Text = $"{firstInterest:N2}";     // 首期利息
-                output4.Text = $"{money:N2}";             // 首期本金
-                output5.Text = $"{totalInterest:N2}";     // 總利息支出
-                output6.Text = $"{totalPayment:N2}";      // 總還款金額
+                output2.Text = $"{monthlypayment:N2}";   
+                output3.Text = $"{firstInterest:N2}";  
+                output4.Text = $"{money:N2}";           
+                output5.Text = $"{totalInterest:N2}";  
+                output6.Text = $"{totalPayment:N2}";    
             }
             else // 有寬限期
             {
@@ -168,11 +198,11 @@ namespace 房貸試算器
                 totalPayment = graceTotal + afterGraceTotal;    // 總還款金額
                 totalInterest = totalPayment - loanamount;      // 總利息支出
 
-                output2.Text = $"{gracepayment:N2}";       // 寬限期每月還款金額
-                output3.Text = $"{firstInterest:N2}";      // 首期利息
-                output4.Text = $"{money:N2}";              // 首期本金
-                output5.Text = $"{totalInterest:N2}";      // 總利息支出
-                output6.Text = $"{totalPayment:N2}";       // 總還款金額
+                output2.Text = $"{gracepayment:N2}";
+                output3.Text = $"{firstInterest:N2}";
+                output4.Text = $"{money:N2}";
+                output5.Text = $"{totalInterest:N2}";
+                output6.Text = $"{totalPayment:N2}";
             }
         }
 
@@ -188,6 +218,8 @@ namespace 房貸試算器
             output4.Text = "";
             output5.Text = "";
             output6.Text = "";
+            comboBox1.SelectedIndex = 0;
+            downpayment.SelectedIndex = 0;
         }
     }
 }
