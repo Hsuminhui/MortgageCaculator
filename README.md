@@ -34,6 +34,9 @@
 
 2.提供專業名詞解釋及相關的計算公式，為可滑動視窗。
 
+3.當輸入金額時，超過千位會有千位標記，供使用者閱讀便捷。
+
 系統介面如下:
 
-<img width="694" height="521" alt="image" src="https://github.com/user-attachments/assets/7fbd021b-6bf0-4caf-baf8-e283b18a9d5e" />
+<img width="695" height="530" alt="image" src="https://github.com/user-attachments/assets/680054b2-60a6-496d-8436-5bcedc379b83" />
+
